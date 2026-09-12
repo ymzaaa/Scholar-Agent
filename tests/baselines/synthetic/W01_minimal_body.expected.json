@@ -1,0 +1,64 @@
+{
+  "title": "最小正文与缺失元数据",
+  "purpose": [
+    "minimal_body",
+    "missing_metadata",
+    "zero_optional_objects"
+  ],
+  "target_expectations": {
+    "logical_inventory": {
+      "title": 1,
+      "level_1_headings": 1,
+      "level_2_headings": 1,
+      "body_paragraphs": 3,
+      "images": 0,
+      "tables": 0,
+      "formulas": 0,
+      "body_citations": 0,
+      "reference_entries": 0
+    },
+    "metadata": {
+      "known": [
+        "title"
+      ],
+      "placeholders": [
+        "author",
+        "student_id",
+        "advisor",
+        "department"
+      ]
+    },
+    "recognition": {
+      "requires_consolidated_review": true,
+      "expected_high_confidence_headings": 2
+    },
+    "references": {
+      "mode": "none",
+      "publish_policy": "not_applicable"
+    },
+    "dual_template": {
+      "ouc_graduate": "degraded",
+      "ouc_bachelor": "degraded",
+      "allowed_degradations": [
+        "missing_metadata"
+      ]
+    }
+  },
+  "review_notes": [
+    "标题、正文和层级必须保持，模板必需元数据使用待填写占位。",
+    "零图片、零表格、零公式和零参考文献不得被当作失败。"
+  ],
+  "known_current_gaps": [
+    "当前正式链路仍只有研究生模板适配器，本科双模板生成尚未实现。",
+    "缺失元数据集中占位和零可选对象的双模板终态尚待实现验证。"
+  ],
+  "schema_version": "1.0.0",
+  "case_id": "W01",
+  "fixture_version": "1.1.0",
+  "source_kind": "fully_synthetic",
+  "artifact": {
+    "relative_path": "tests/fixtures/word/W01_minimal_body.docx",
+    "package_sha256": "fd1e926fdf3a207f8ed0cf05f92eb4fc7d9660ad9313c3ea4be783d05e728c8c",
+    "semantic_sha256": "23b4daec4fae1f39cd975d1d894f17d55b965b2a25c97cc4668ddd6292dded0a"
+  }
+}

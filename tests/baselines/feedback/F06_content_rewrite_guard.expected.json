@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F06",
+  "input_sha256": "b3dbd3f2c1c3c15dbb7f569712d08e9315dbc479ad8a14334c36a045b05c63ed",
+  "expected": {"decision": "publish_candidate", "legal_goal_retained": true, "content_rewrite_applied": false, "required_fragment": "\\setlength{\\parskip}{3pt}", "protected_text": "实验组准确率为92.4\\%，对照组为88.1\\%。"}
+}

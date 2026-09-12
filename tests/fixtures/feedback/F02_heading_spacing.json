@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F02",
+  "title": "指定标题段后距",
+  "initial_latex": "% SCHOLAR_UNIT_BEGIN heading-1 heading_1\n\\section{研究方法}\n% SCHOLAR_UNIT_END heading-1\n% SCHOLAR_UNIT_BEGIN body-1 body_paragraph\n相邻正文保持不变。\n% SCHOLAR_UNIT_END body-1\n",
+  "feedbacks": [{"feedback_id": "f02-1", "text": "该标题段后距离过大", "selected_unit_ids": ["heading-1"]}],
+  "target": {"unit_id": "heading-1", "target_file": "contents/chapter.tex", "role": "heading_1"},
+  "model_output": {"edits": [{"old_text": "\\section{研究方法}", "new_text": "{\\setlength{\\parskip}{0pt}\\section{研究方法}}"}], "constraint_candidates": []}
+}

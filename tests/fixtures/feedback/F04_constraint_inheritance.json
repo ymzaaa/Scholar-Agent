@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F04",
+  "title": "已确认字号约束跨轮继承",
+  "initial_latex": "% SCHOLAR_UNIT_BEGIN body-1 body_paragraph\n{\\fontsize{12pt}{18pt}\\selectfont 第一轮正文}\\setlength{\\parskip}{6pt}\n% SCHOLAR_UNIT_END body-1\n",
+  "active_constraints": [{"constraint_id": "font-lock", "constraint_type": "font_size", "parameters": {"value": "12pt"}, "scope_type": "content_unit", "scope_ref": "body-1", "verifier": {"mode": "deterministic", "checker": "tex_unit_contains", "relative_path": "contents/chapter.tex", "needle": "\\fontsize{12pt}"}}],
+  "feedbacks": [{"feedback_id": "f04-2", "text": "保持字号不变，只把段后距改小", "selected_unit_ids": ["body-1"]}],
+  "target": {"unit_id": "body-1", "target_file": "contents/chapter.tex", "role": "body_paragraph"},
+  "model_output": {"edits": [{"old_text": "\\setlength{\\parskip}{6pt}", "new_text": "\\setlength{\\parskip}{3pt}"}], "constraint_candidates": []}
+}

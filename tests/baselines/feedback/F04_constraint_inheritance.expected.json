@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F04",
+  "input_sha256": "50abb21f36ec124811c8cc07c9d9cf71e82b556db9757804776a772be3fdbe10",
+  "expected": {"decision": "publish_candidate", "inherited_constraint": "font-lock", "constraint_status": "passed", "required_fragments": ["\\fontsize{12pt}", "\\setlength{\\parskip}{3pt}"], "forbidden_fragment": "\\setlength{\\parskip}{6pt}"}
+}

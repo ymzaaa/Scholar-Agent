@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F07",
+  "input_sha256": "1c3a6bf9b0eb108731b83a64f3e8c46371d6f8f5f57ba50e53570d5ff737f76f",
+  "expected": {"planning_status": "needs_user_input", "reason": "target_ambiguous", "candidate_created": false, "model_calls": 0, "minimum_request": "请选择具体内容单元"}
+}

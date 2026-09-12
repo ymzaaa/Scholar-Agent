@@ -1,0 +1,60 @@
+{
+  "title": "标题样式混乱与普通首表",
+  "purpose": [
+    "ambiguous_headings",
+    "format_noise",
+    "first_table_not_cover"
+  ],
+  "target_expectations": {
+    "logical_inventory": {
+      "title": 1,
+      "numbered_heading_candidates": 2,
+      "unnumbered_heading_candidates": 2,
+      "body_paragraphs": 4,
+      "images": 0,
+      "tables": 1,
+      "formulas": 0,
+      "body_citations": 0,
+      "reference_entries": 0
+    },
+    "recognition": {
+      "requires_consolidated_review": true,
+      "expected_high_confidence_texts": [
+        "1 绪论",
+        "1.1 研究背景"
+      ],
+      "expected_review_texts": [
+        "研究方法",
+        "实验结果"
+      ],
+      "must_remain_body": [
+        "本段讨论2024年度研究结果，但它本身不是一个标题。"
+      ],
+      "first_table_role": "content_table"
+    },
+    "word_format_policy": "ignore_for_latex_output",
+    "dual_template": {
+      "ouc_graduate": "after_confirmation",
+      "ouc_bachelor": "after_confirmation"
+    }
+  },
+  "review_notes": [
+    "字号、加粗、颜色和居中只作为弱证据，不作为最终 LaTeX 格式。",
+    "研究方法和实验结果属于低置信度标题候选，用户确认前继续作为正文保存。",
+    "第一张表是温度数据表，绝不能因位置被识别为封面信息。"
+  ],
+  "implemented_contract": [
+    "编号标题自动确认，无编号弱证据标题集中待确认且默认保持正文。",
+    "无题注数据表按 Word 块顺序原位渲染，不虚构表号、题注或标签。",
+    "确认结果由同一结构快照驱动双模板渲染。"
+  ],
+  "schema_version": "1.0.0",
+  "case_id": "W03",
+  "fixture_version": "1.1.0",
+  "source_kind": "fully_synthetic",
+  "artifact": {
+    "relative_path": "tests/fixtures/word/W03_ambiguous_structure.docx",
+    "package_sha256": "fb1243c6caeaf625601d1c5e64180dd9170a5439ff9101cf0a28930c4587dad1",
+    "semantic_sha256": "cf2570b0ea718520f5000ec9f5835d38ad991ca074b41ac4f8c6ea4fccd37507"
+  }
+}

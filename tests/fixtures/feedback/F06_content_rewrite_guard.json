@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F06",
+  "title": "格式反馈夹带正文润色",
+  "initial_latex": "% SCHOLAR_UNIT_BEGIN body-1 body_paragraph\n\\setlength{\\parskip}{6pt}实验组准确率为92.4\\%，对照组为88.1\\%。\n% SCHOLAR_UNIT_END body-1\n",
+  "feedbacks": [{"feedback_id": "f06-1", "text": "把段后距调小并润色这段正文", "selected_unit_ids": ["body-1"]}],
+  "target": {"unit_id": "body-1", "target_file": "contents/chapter.tex", "role": "body_paragraph"},
+  "model_output": {"edits": [{"old_text": "\\setlength{\\parskip}{6pt}", "new_text": "\\setlength{\\parskip}{3pt}"}], "constraint_candidates": []}
+}

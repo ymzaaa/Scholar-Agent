@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scholar-agent.local/schema/content-units-1.7.0.json",
+  "title": "Scholar Agent Word Content Units",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "source_path",
+    "metadata",
+    "units",
+    "issues",
+    "paragraphs",
+    "tables",
+    "media_files"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.7.0"
+    },
+    "source_path": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "source_sha256"
+      ],
+      "properties": {
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": true
+    },
+    "units": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/content_unit"
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/issue"
+      }
+    },
+    "paragraphs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "media_files": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "content_unit": {
+      "type": "object",
+      "required": [
+        "unit_id",
+        "unit_type",
+        "order",
+        "text",
+        "source",
+        "properties",
+        "relations",
+        "payload",
+        "status",
+        "content_hash"
+      ],
+      "properties": {
+        "unit_id": {
+          "type": "string",
+          "pattern": "^u-[0-9]{6}$"
+        },
+        "unit_type": {
+          "enum": [
+            "paragraph",
+            "table",
+            "image",
+            "formula",
+            "citation",
+            "ole_object",
+            "footnote",
+            "field",
+            "bookmark",
+            "hyperlink",
+            "text_box"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "text": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object"
+        },
+        "properties": {
+          "type": "object"
+        },
+        "relations": {
+          "type": "object"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "status": {
+          "enum": [
+            "extracted",
+            "degraded",
+            "failed"
+          ]
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "issue": {
+      "type": "object",
+      "required": [
+        "code",
+        "message",
+        "severity",
+        "unit_id",
+        "source"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "warning",
+            "error"
+          ]
+        },
+        "unit_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

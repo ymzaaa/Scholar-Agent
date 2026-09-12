@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F03",
+  "input_sha256": "f91b81f17c2b4605615e7702eb19b29b0e0f628cef4719d03323830ce1cfca81",
+  "expected": {"planning_status": "ready", "tool": "paginate_table", "model_calls": 0, "planned_feedback_ids": ["f03-1"]}
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F01",
+  "title": "图片靠近当前段落",
+  "initial_latex": "% SCHOLAR_UNIT_BEGIN fig-1 figure_caption\n\\begin{figure}\n\\includegraphics{figure-a.png}\n\\caption{示意图}\\label{fig:a}\n\\end{figure}\n% SCHOLAR_UNIT_END fig-1\n",
+  "feedbacks": [{"feedback_id": "f01-1", "text": "图片尽量靠近当前段落", "selected_unit_ids": ["fig-1"]}],
+  "target": {"unit_id": "fig-1", "target_file": "contents/chapter.tex", "role": "figure_caption"},
+  "model_output": {"edits": [{"old_text": "\\begin{figure}", "new_text": "\\begin{figure}[htbp]"}], "constraint_candidates": []}
+}

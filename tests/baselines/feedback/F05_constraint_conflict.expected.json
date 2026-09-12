@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F05",
+  "input_sha256": "293e1e3296499b97cdb753e2aa7048683f990fbae079111b4e3d587ec6c4e220",
+  "expected": {"decision": "needs_user_input", "reason": "constraint_conflict", "conflict_ids": ["font-lock"], "changed_files": [], "required_original_fragment": "\\fontsize{12pt}{18pt}", "accepted_version_moved": false}
+}

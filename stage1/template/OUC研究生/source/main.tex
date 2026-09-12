@@ -1,0 +1,225 @@
+\documentclass[pdf,oneside]{oucthesis}
+\setmainfont{TeX Gyre Termes}  %设置英文Times New Roman
+\setmathfont{TeX Gyre Termes Math} %设置英文数学Times New Roman
+% pdf: 便于阅读的电子版，去除掉多余的空白页，加入超链接等
+% print：打印版本，添加空白页，便于双面打印，禁用超链接
+
+
+
+% ========================================
+% 版本控制：电子版 vs 纸质版
+% ========================================
+\newif\ifprintversion
+% \printversiontrue   % 纸质版：插入空白页
+\printversionfalse    % 电子版：不插入空白页
+
+% 封皮部分空白页（使用 empty 样式：无页码，无页眉）
+\newcommand{\insertblankpageEmpty}{%
+    \ifprintversion
+        \ifodd\value{page}\else
+            \newpage
+            \null
+            \thispagestyle{empty}
+            \newpage
+        \fi
+    \fi
+}
+
+
+% 前置部分空白页（使用 plain 样式：有页码，无页眉）
+\newcommand{\insertblankpagePlain}{%
+    \ifprintversion
+        \ifodd\value{page}\else
+            \newpage
+            \null
+            \thispagestyle{plain}
+            \newpage
+        \fi
+    \fi
+}
+
+% 正文部分空白页（使用 fancy 样式：有页码，有页眉）
+\newcommand{\insertblankpageFancy}{%
+    \ifprintversion
+        \ifodd\value{page}\else
+            \newpage
+            \null
+            \thispagestyle{fancy}
+            \newpage
+        \fi
+    \fi
+}
+
+
+% ========================================
+%｜             论文信息填写               ｜
+% ========================================
+\title{待生成论文标题}
+
+
+% ========================================
+%                包引用                 
+% ========================================
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{diagbox}
+\usepackage{setspace}
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{caption}
+\captionsetup{font={small}}
+\usepackage{csquotes}
+\usepackage{adjustbox}
+\usepackage{longtable} % 引入 longtable 包，用于跨页表格
+\usepackage{array}
+\usepackage{notoccite}  % 忽略目录等部分的引用，解决图表标题中引用参考文献，导致参考文献乱序
+\usepackage{seqsplit}  % 解决”长英文导致不分行，超出页面”的问题,使用\seqsplit{}将长英文包括进去即可。
+
+% 修复 \doi 命令中的下划线问题（_ 在 text mode 中需特殊处理）
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\detokenize{#1}}}
+
+% 浮动体参数完整设置
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.7}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+
+\raggedbottom %解决latex默认页面底部对齐，导致拉伸出现段间距过大的问题
+
+\begin{document}
+
+
+% 封面
+\include{data/cover}
+
+% 学位论文答辩委员会
+\insertblankpageEmpty%空白页判断
+\include{data/committee.tex}
+
+% 独创性声明
+\insertblankpageEmpty%空白页判断
+\include{data/statement.tex}
+
+% 从摘要开始，设置行距为20磅
+\setlength{\baselineskip}{20pt}
+
+
+% 中文摘要
+\insertblankpageEmpty%空白页判断
+\phantomsection\addengcontent{chapter}{Abstract (in Chinese) }
+\include{data/abstract_ch.tex}
+
+\pagenumberingnoreset{Roman}   % 这里将页码设置为大写罗马数值，不然后续插入空白页的时候 页码会变成阿拉伯数字
+
+% 英文摘要
+\insertblankpagePlain%空白页判断
+\phantomsection\addengcontent{chapter}{Abstract (in English) }
+\include{data/abstract_en.tex}
+
+\pagenumberingnoreset{Roman}   % 这里将页码设置为大写罗马数值，不然后续插入空白页的时候 页码会变成阿拉伯数字
+
+% 目录
+\insertblankpagePlain%空白页判断
+\tableofcontents % 中文目录
+
+\insertblankpagePlain%空白页判断
+\tableofengcontents % 英文目录
+% 测试文字（用于观察排版位置）
+
+\clearpage
+% 图表目录
+\insertblankpagePlain%空白页判断
+\newcommand{\loflabel}{图} 
+\renewcommand{\numberline}[1]{\loflabel~#1\hspace*{1em}}
+\renewcommand{\listfigurename}{插~~图~~清~~单} 
+% \begin{center}
+% \clearpage
+% \phantomsection\addcontentsline{toc}{chapter}{插\hspace{6pt}图\hspace{6pt}清\hspace{6pt}单}
+% \phantomsection\addengcontent{chapter}{Figure list}
+% {\listoffigures}
+% \end{center}
+
+% %\clearpage 控制前面目录最后是否要换页，不换页的话，会压紧显示在一页上
+\phantomsection
+\addcontentsline{toc}{chapter}{插\hspace{6pt}图\hspace{6pt}清\hspace{6pt}单}
+\addengcontent{chapter}{Figure list}
+\listoffigures
+% 上方的注释/显示可以替换
+
+\clearpage
+\insertblankpagePlain%空白页判断
+\newcommand{\lotlabel}{表}
+\renewcommand{\numberline}[1]{\lotlabel~#1\hspace*{1em}}
+\renewcommand{\listtablename}{表~~格~~清~~单} 
+% \begin{center}
+% \clearpage
+% \phantomsection\addcontentsline{toc}{chapter}{表\hspace{6pt}格\hspace{6pt}清\hspace{6pt}单}
+% \phantomsection\addengcontent{chapter}{Table list}
+% {\listoftables}
+% \end{center}
+% \clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{表\hspace{6pt}格\hspace{6pt}清\hspace{6pt}单}
+\addengcontent{chapter}{Table list}
+\listoftables
+% 上方的注释/显示可以替换
+
+\clearpage
+
+% 中文注释表
+\insertblankpagePlain%空白页判断
+\phantomsection\addengcontent{chapter}{Abbreviation}
+\include{data/abbreviation.tex}
+
+% \renewcommand{\numberline}[1]{\lotlabel~#1\hspace*{1em}}
+% \renewcommand{\listtablename}{注~~释~~表} 
+% \begin{center}
+% \clearpage
+% \phantomsection\addcontentsline{toc}{chapter}{注\hspace{16pt}释\hspace{16pt}表}
+% \phantomsection\addengcontent{chapter}{Abbreviation}
+% {\listoftables}
+% \end{center}
+
+
+\pagenumberingnoreset{Roman}   % 这里将页码设置为大写罗马数值，不然后续插入空白页的时候 页码会变成阿拉伯数字
+\insertblankpageFancy%空白页判断
+% 正文
+\mainmatter
+\pagenumbering{arabic}
+
+% \mainmatter 会清空页面并重置页码，这里不判断是否是奇数还是偶数页，因为页码是从1开始，转到\mainmatter前判断
+% SCHOLAR_AGENT_CHAPTERS_BEGIN
+% 章节引用由 OUC 模板适配器按本轮实际渲染清单生成
+% SCHOLAR_AGENT_CHAPTERS_END
+
+% 参考文献
+% SCHOLAR_AGENT_BIBLIOGRAPHY_BEGIN
+\insertblankpageFancy%空白页判断
+\phantomsection\addengcontent{chapter}{References}
+\bibliographystyle{oucauthoryear}
+\bibliography{cite}
+% SCHOLAR_AGENT_BIBLIOGRAPHY_END
+
+\clearpage
+% 获得的成果
+\insertblankpageFancy%空白页判断
+\phantomsection\addengcontent{chapter}{Published papers and research results while pursuing the degree}
+\include{data/achievement.tex}
+
+
+% 致谢
+\clearpage
+\insertblankpageFancy%空白页判断
+\phantomsection\addengcontent{chapter}{Acknowledgements}
+\include{data/acknowledgement.tex}
+
+% 作者简介
+\clearpage
+\insertblankpageFancy%空白页判断
+\phantomsection\addengcontent{chapter}{Resume}
+\include{data/profile.tex}
+
+\end{document}

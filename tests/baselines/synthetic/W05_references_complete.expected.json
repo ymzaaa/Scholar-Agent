@@ -1,0 +1,60 @@
+{
+  "title": "完整数字引用与方括号非引用",
+  "purpose": [
+    "word_numeric_references",
+    "citation_context",
+    "reference_fidelity"
+  ],
+  "target_expectations": {
+    "logical_inventory": {
+      "title": 1,
+      "level_1_headings": 1,
+      "body_paragraphs": 8,
+      "images": 0,
+      "tables": 0,
+      "formulas": 0,
+      "body_citations": 2,
+      "non_citation_brackets": 2,
+      "reference_entries": 3
+    },
+    "references": {
+      "mode": "word_numeric_list",
+      "body_citation_texts": [
+        "[1]",
+        "[2-3]"
+      ],
+      "non_citation_texts": [
+        "[0,1]",
+        "[1,2]"
+      ],
+      "number_to_key": {
+        "1": "word-ref-0001",
+        "2": "word-ref-0002",
+        "3": "word-ref-0003"
+      },
+      "explicit_labels_required": true,
+      "preserve_reference_text": true
+    },
+    "dual_template": {
+      "ouc_graduate": "success",
+      "ouc_bachelor": "success"
+    }
+  },
+  "known_current_gaps": [
+    "当前纯正则实现可能把语境中的[1,2]误识别为引用。",
+    "当前抽取层可能把文末条目前缀[1]/[2]/[3]也创建为正文引用单元。"
+  ],
+  "review_notes": [
+    "三个参考文献条目完全合成，不表示真实公开文献。",
+    "引用转换必须保持原编号、原位置和文末条目可见文字。"
+  ],
+  "schema_version": "1.0.0",
+  "case_id": "W05",
+  "fixture_version": "1.1.0",
+  "source_kind": "fully_synthetic",
+  "artifact": {
+    "relative_path": "tests/fixtures/word/W05_references_complete.docx",
+    "package_sha256": "d905164b5991bd1cae19026b31ff0d8a3f493bfa04bf5a093d5cb49147ba537e",
+    "semantic_sha256": "2bf204659c4eb95af6ad113a3f80a5829ccbbeb3317a99aacfcf928e686089f3"
+  }
+}

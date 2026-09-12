@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F08",
+  "title": "编译成功但目标指标未改善",
+  "initial_latex": "% SCHOLAR_UNIT_BEGIN table-1 table_caption\n\\begin{table}\n\\caption{长表}\n\\begin{tabular}{cc}A&B\\\\\\end{tabular}\n\\end{table}\n% SCHOLAR_UNIT_END table-1\n",
+  "feedbacks": [{"feedback_id": "f08-1", "text": "表格显示不全，需要跨页", "selected_unit_ids": ["table-1"]}],
+  "target": {"unit_id": "table-1", "target_file": "contents/chapter.tex", "role": "table_caption"},
+  "failure_injection": {"compile_success": true, "format_publish_allowed": true, "local_metric_passed": false}
+}

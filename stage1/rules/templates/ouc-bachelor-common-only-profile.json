@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "template_id": "ouc-bachelor",
+  "default_disposition": "degrade",
+  "rules": [],
+  "extra_rules": [
+    {
+      "rule_id": "OUC-BACHELOR-PDF-A4",
+      "category": "PDF页面",
+      "item": "输出PDF页面尺寸必须为A4",
+      "phase": "pdf",
+      "disposition": "block",
+      "detector": "pdf_page_size",
+      "source": "固定本科模板的页面参数",
+      "config": {"size_points": [595.276, 841.89], "tolerance_points": 2.0},
+      "layer": "template"
+    }
+  ],
+  "common_overrides": {
+    "COMMON-COVER-METADATA-PENDING": {
+      "config": {"paths": ["main.tex"]}
+    },
+    "COMMON-LOG-FONT-SUBSTITUTION": {
+      "disposition": "degrade",
+      "config": {
+        "known_baseline_patterns": [
+          {
+            "baseline_id": "ouc-bachelor-simhei-bold-shape",
+            "pattern": "Font shape `TU/SimHei\\(0\\)/b/n' undefined",
+            "max_count": 1
+          },
+          {
+            "baseline_id": "ouc-bachelor-kaiti-bold-shape",
+            "pattern": "Font shape `TU/KaiTi\\(0\\)/b/n' undefined",
+            "max_count": 1
+          },
+          {
+            "baseline_id": "ouc-bachelor-font-size-substitution",
+            "pattern": "Size substitutions with differences",
+            "max_count": 1
+          }
+        ]
+      }
+    },
+    "COMMON-LOG-OVERFULL": {
+      "config": {
+        "known_baseline_patterns": [
+          {
+            "baseline_id": "ouc-bachelor-cover-overfull",
+            "pattern": "Overfull \\\\hbox \\(37\\.27312pt too wide\\)",
+            "max_count": 1
+          },
+          {
+            "baseline_id": "ouc-bachelor-signature-overfull",
+            "pattern": "Overfull \\\\hbox \\(16\\.90999pt too wide\\)",
+            "max_count": 1
+          }
+        ]
+      }
+    }
+  },
+  "profile_status": "common_rules_only",
+  "detail": "本科执行通用动态安全检查和固定模板的A4产物尺寸检查，不重复扫描静态类文件格式。"
+}

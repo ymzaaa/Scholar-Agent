@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F07",
+  "title": "只有页码和模糊描述",
+  "initial_latex": "% SCHOLAR_UNIT_BEGIN body-1 body_paragraph\n第一页正文。\n% SCHOLAR_UNIT_END body-1\n% SCHOLAR_UNIT_BEGIN body-2 body_paragraph\n第二页正文。\n% SCHOLAR_UNIT_END body-2\n",
+  "feedbacks": [{"feedback_id": "f07-1", "text": "这里不对", "selected_unit_ids": [], "page_number": 2}],
+  "target_candidates": [{"unit_id": "body-1"}, {"unit_id": "body-2"}],
+  "model_output": null
+}

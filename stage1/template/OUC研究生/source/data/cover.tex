@@ -1,0 +1,54 @@
+% 中国海洋大学研究生学位论文封面布局。
+% 字段值由适配器写入 metadata.tex；本文件只维护模板布局。
+\input{data/metadata.tex}
+\begin{titlepage}
+
+% 固定左右信息块，避免按字段文本宽度手工补偿 \hspace 导致错位。
+\noindent\textbf{\zihao{4}%
+\makebox[\textwidth][l]{%
+  \makebox[0.66\textwidth][l]{分类号：\ScholarClassification}%
+  \makebox[0.34\textwidth][l]{学校代码：10423}}\\
+\makebox[\textwidth][l]{%
+  \makebox[0.66\textwidth][l]{UDC：\ScholarUDC}%
+  \makebox[0.34\textwidth][l]{学 ~~~~~~~~ 号：\ScholarStudentId}}}
+\vskip50pt
+\par \vskip20pt
+
+% 中文标题
+\begin{spacing}{1.5}
+\centering{\fontsize{20pt}{30pt}\selectfont\heiti \ScholarTitleZh}
+\par \vskip30pt
+
+% 英文标题
+\centering{\fontsize{18pt}{80pt}\selectfont\timesfont\textbf{\ScholarTitleEn}}
+\end{spacing}
+
+% 作者
+\par\vskip80pt
+{~~~~~~~~~~~~~~~~~~~~~~~~~~ \ziju{0.65}\fontsize{14pt}{21pt}\selectfont\heiti 作\hspace{55.3pt}者：}
+{\fontsize{14pt}{21pt}\selectfont \ScholarAuthor}
+% 指导教师
+\par\vskip6pt
+{~~~~~~~~~~~~~~~~~~~~~~~~~~ \ziju{0.65}\fontsize{14pt}{21pt}\selectfont\heiti 指导教师：}
+{\fontsize{14pt}{21pt}\selectfont \ScholarAdvisor}
+% 学位类型
+\par\vskip6pt
+{~~~~~~~~~~~~~~~~~~~~~~~~~~ \ziju{0.65}\fontsize{14pt}{21pt}\selectfont\heiti 学位类型：}
+{\fontsize{14pt}{21pt}\selectfont \ScholarDegreeType}
+% 专业名称
+\par\vskip6pt
+{~~~~~~~~~~~~~~~~~~~~~~~~~~ \ziju{0.65}\fontsize{14pt}{21pt}\selectfont\heiti 专业名称：}
+{\fontsize{14pt}{21pt}\selectfont \ScholarMajor}
+% 研究方向
+\par\vskip6pt
+{~~~~~~~~~~~~~~~~~~~~~~~~~~ \ziju{0.65}\fontsize{14pt}{21pt}\selectfont\heiti 研究方向：}
+{\fontsize{14pt}{21pt}\selectfont \ScholarResearchDirection}
+% 授予学位单位为模板固定事实
+\par\vskip6pt
+{~~~~~~~~~~~~~~~~~~~~~~~~~~ \fontsize{14pt}{21pt}\selectfont\heiti 授予学位单位：}%
+{\fontsize{14pt}{21pt}\selectfont ~中国海洋大学}
+
+\par\vskip80pt
+\centering{\fontsize{14}{32}\selectfont\heiti 日期：\ScholarCompletionDate}
+
+\end{titlepage}

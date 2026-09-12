@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F02",
+  "input_sha256": "1c230e46e9ec923ff5267e641cc14da492f22085ce3db13347182bc1d2ed5ad6",
+  "expected": {"decision": "publish_candidate", "tool": "guarded_latex_patch", "target_unit": "heading-1", "untouched_unit": "body-1", "required_fragment": "\\setlength{\\parskip}{0pt}", "protected_text": ["研究方法", "相邻正文保持不变。"]}
+}

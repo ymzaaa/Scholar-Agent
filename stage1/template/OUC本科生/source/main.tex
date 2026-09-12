@@ -1,0 +1,54 @@
+\documentclass[UTF8,zihao=-4]{oucart}
+\usepackage{indentfirst}
+\usepackage{graphicx, subfig}
+
+\title{【待填写】}
+\entitle{【待填写】}
+\author{【待填写】}
+\studentid{【待填写】}
+\advisor{【待填写】}
+\department{【待填写】}{【待填写】}
+\grade{【待填写】}
+
+% SCHOLAR_AGENT_CN_ABSTRACT_BEGIN
+\cnabstractkeywords{
+    % 中文摘要由流水线或模板使用者填写。
+}{
+    % 中文关键词由流水线或模板使用者填写。
+}
+% SCHOLAR_AGENT_CN_ABSTRACT_END
+% SCHOLAR_AGENT_EN_ABSTRACT_BEGIN
+\enabstractkeywords{
+    % 英文摘要由流水线或模板使用者填写。
+}{
+    % 英文关键词由流水线或模板使用者填写。
+}
+% SCHOLAR_AGENT_EN_ABSTRACT_END
+
+\renewcommand{\baselinestretch}{1.6}
+
+\begin{document}
+
+    \makecover % 封面
+    \makesignature % 扉页
+    \makeabstract % 摘要
+
+% 目录
+    \thispagestyle{tableofcontents}
+    \tableofcontents
+    \newpage
+
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+
+% 正文内容
+% SCHOLAR_AGENT_CHAPTERS_BEGIN
+% 章节引用由本科模板适配器按本轮实际渲染清单生成。
+% SCHOLAR_AGENT_CHAPTERS_END
+
+% 参考文献
+% SCHOLAR_AGENT_BIBLIOGRAPHY_BEGIN
+% 参考文献由本科模板适配器按本轮 Word 内容写入。
+% SCHOLAR_AGENT_BIBLIOGRAPHY_END
+
+\end{document}

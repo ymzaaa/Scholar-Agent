@@ -1,0 +1,52 @@
+{
+  "title": "公式语法错误与发布阻断",
+  "purpose": [
+    "formula_delimiter_errors",
+    "formula_syntax_error",
+    "publish_gate"
+  ],
+  "target_expectations": {
+    "logical_inventory": {
+      "title": 1,
+      "level_1_headings": 1,
+      "body_paragraphs": 4,
+      "images": 0,
+      "tables": 0,
+      "valid_formulas": 0,
+      "malformed_formula_candidates": 3
+    },
+    "formulas": {
+      "preserve_raw_text": true,
+      "must_report_candidates": [
+        "$x+y",
+        "$$x+y$",
+        "$$\\frac{a}{b$$"
+      ],
+      "must_not_silently_repair": true,
+      "must_not_drop_following_body": true
+    },
+    "publish_policy": "blocked_before_success",
+    "dual_template": {
+      "ouc_graduate": "blocked",
+      "ouc_bachelor": "blocked"
+    }
+  },
+  "review_notes": [
+    "该案例用于失败门禁，不要求生成可交付 PDF。",
+    "若后续允许 Agent 建议修复，仍必须展示原文、候选修改和验证结果并获得授权。"
+  ],
+  "implemented_contract": [
+    "确定性扫描同时识别合法公式、未闭合定界符、单双美元混用和花括号错误。",
+    "异常候选保存原文、来源偏移和错误类型，不进入渲染 token。",
+    "CLI、HTTP 和双模板链路均在渲染、模型调用与编译前阻断。"
+  ],
+  "schema_version": "1.0.0",
+  "case_id": "W09",
+  "fixture_version": "1.1.0",
+  "source_kind": "fully_synthetic",
+  "artifact": {
+    "relative_path": "tests/fixtures/word/W09_formulas_malformed.docx",
+    "package_sha256": "f136d3c1a25cd86b4d7e739be8aad917b452ce4ee4c8a21ef1f8cea114c0cb20",
+    "semantic_sha256": "9e43727cfcc6047e8f15e6dcee107bbd484c9c49aea2616c803a69e289d97081"
+  }
+}

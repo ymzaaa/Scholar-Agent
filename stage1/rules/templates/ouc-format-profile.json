@@ -1,0 +1,380 @@
+{
+  "schema_version": "1.0.0",
+  "template_id": "ouc-graduate",
+  "rule_prefix": "OUC",
+  "spec_source": "../ouc-format-spec.md",
+  "format_contract": {
+    "template_root": "../../template/OUC研究生/source",
+    "required_latex_files": ["main.tex", "oucthesis.cls"],
+    "official_spec": {
+      "path": "研究生论文书写规范.docx",
+      "sha256": "92eb837a29622d50558e0edc832049798c89ee583a29367067ee91123960abb5",
+      "reviewed": true
+    },
+    "locked_rules": {
+      "page.size": "A4",
+      "page.margin_top": "25mm",
+      "page.margin_bottom": "25mm",
+      "page.margin_left": "25mm",
+      "page.margin_right": "25mm",
+      "body.font_size": "12pt",
+      "body.line_spacing": "20pt",
+      "formula.display_above_skip": "0pt",
+      "formula.display_below_skip": "6bp",
+      "formula.explanation_first_line_indent": "none",
+      "toc.page_number_right_margin": "3em, nonbreaking leader",
+      "figure.caption_font_size": "10.5pt",
+      "table.caption_font_size": "10.5pt",
+      "table.content_font_size": "10.5pt",
+      "table.arraystretch": 1.6,
+      "table.top_bottom_rule": "1.5pt",
+      "table.middle_rule": "0.5pt"
+    },
+    "conditional_rules": {
+      "figure.english_caption": {"required": true},
+      "table.english_caption": {"required": true},
+      "toc.english_headings": {"required": true},
+      "table.pagination": {"required": true, "when": "exceeds_single_page"}
+    },
+    "capabilities": {
+      "breakable_table": {
+        "supported": true,
+        "strategy": "paginate",
+        "environment": "longtable",
+        "repeat_header": true,
+        "continuation_caption": true
+      }
+    }
+  },
+  "default_disposition": "degrade",
+  "assertion_groups": [
+    {
+      "rule_ids": ["OUC-2.1", "OUC-2.2", "OUC-2.4", "OUC-2.5", "OUC-2.6"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["chapter\\s*=\\s*\\{.*?format\\s*=\\s*\\\\centering\\\\sffamily\\\\fontsize\\{16", "beforeskip\\s*=\\s*24", "afterskip\\s*=\\s*18"]}
+    },
+    {
+      "rule_ids": ["OUC-2.3"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["ouc@chapter\\[摘要\\]\\{摘\\\\zhspace\\[2\\]要\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-2.11", "OUC-2.14"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["data/abstract_ch.tex"], "applicability_nonempty_environment": "abstract", "literal_patterns": ["\\noindent\\textbf{关键词：}"]}
+    },
+    {
+      "rule_ids": ["OUC-3.1", "OUC-3.2", "OUC-3.3", "OUC-3.4", "OUC-3.5"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["ouc@chapter\\[ABSTRACT\\]\\{\\\\bfseries\\\\timesfont\\{ABSTRACT\\}\\}", "chapter\\s*=\\s*\\{.*?format\\s*=\\s*\\\\centering.*?fontsize\\{16", "beforeskip\\s*=\\s*24", "afterskip\\s*=\\s*18"]}
+    },
+    {
+      "rule_ids": ["OUC-4.1.1", "OUC-4.1.2", "OUC-4.1.3", "OUC-4.1.4"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["renewcommand\\{\\\\contentsname\\}\\{目\\\\zhspace\\[2\\]录\\}", "chapter\\s*=\\s*\\{.*?fontsize\\{16", "beforeskip\\s*=\\s*24", "afterskip\\s*=\\s*18"]}
+    },
+    {
+      "rule_ids": ["OUC-4.1.5", "OUC-4.1.9"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["titlecontents\\{chapter\\}.*?addvspace\\{6bp\\}.*?fontsize\\{14"]}
+    },
+    {
+      "rule_ids": ["OUC-4.1.6", "OUC-4.1.7", "OUC-4.1.12"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["titlecontents\\{section\\}.*?\\[2\\\\ccwd\\].*?normalsize", "titlecontents\\{subsection\\}.*?\\[4\\\\ccwd\\].*?normalsize"]}
+    },
+    {
+      "rule_ids": ["OUC-4.2.1"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["engcontentsname\\{\\\\bfseries\\\\timesfont\\{Contents\\}\\}", "contentsmargin\\{3em\\}", "unskip\\\\nobreak\\\\hspace\\{0\\.5em\\}\\\\ouc@leaders\\\\contentspage"]}
+    },
+    {
+      "rule_ids": ["OUC-5.6", "OUC-5.7", "OUC-5.8", "OUC-5.14", "OUC-5.15"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["fancyhead\\[CO\\].*?中国海洋大学硕士学位论文", "fancyhead\\[CE\\].*?ouc@header", "ouc@hf@font\\{\\\\fontsize\\{10\\.5", "fancyfoot\\[C\\]\\{\\\\ouc@hf@font\\\\thepage\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-5.11", "OUC-5.12", "OUC-5.13"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["ouc@page@Roman.*?@slowromancap", "pagenumberingnoreset\\{Roman\\}", "pagenumberingnoreset\\{arabic\\}", "setcounter\\{page\\}\\{1\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-6.1", "OUC-6.2", "OUC-6.3", "OUC-6.4", "OUC-6.5", "OUC-6.6"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["chapter\\s*=\\s*\\{.*?format\\s*=\\s*\\\\sffamily\\\\fontsize\\{16.*?centering", "aftername\\s*=\\s*\\\\zhspace\\[0\\.5\\]", "beforeskip\\s*=\\s*24pt", "afterskip\\s*=\\s*18pt"]}
+    },
+    {
+      "rule_ids": ["OUC-6.7"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["renewcommand\\\\chapter.*?clearpage"]}
+    },
+    {
+      "rule_ids": ["OUC-6.8", "OUC-6.9", "OUC-6.10", "OUC-6.11", "OUC-6.12", "OUC-6.13"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["section\\s*=\\s*\\{.*?format\\s*=\\s*\\\\sffamily\\\\fontsize\\{14", "aftername\\s*=\\s*\\\\zhspace\\[0\\.5\\]", "beforeskip\\s*=\\s*24pt", "afterskip\\s*=\\s*6pt"]}
+    },
+    {
+      "rule_ids": ["OUC-6.14", "OUC-6.15", "OUC-6.16", "OUC-6.17"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["subsection\\s*=\\s*\\{.*?format\\s*=\\s*\\\\sffamily\\\\fontsize\\{12", "beforeskip\\s*=\\s*12pt", "afterskip\\s*=\\s*6pt", "indent\\s*=\\s*\\\\z@"]}
+    },
+    {
+      "rule_ids": ["OUC-6.19"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["main.tex"], "patterns": ["setmainfont\\{TeX Gyre Termes\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-6.23"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["main.tex"], "patterns": ["setlength\\{\\\\baselineskip\\}\\{20pt\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-7.9"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["main.tex"], "patterns": ["setmathfont\\{TeX Gyre Termes Math\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-7.10"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["abovedisplayskip\\s+\\\\z@", "abovedisplayshortskip\\s+\\\\z@", "belowdisplayskip\\s+6\\\\bp@", "belowdisplayshortskip\\s+6\\\\bp@"]}
+    },
+    {
+      "rule_ids": ["OUC-8.3", "OUC-8.4", "OUC-8.5", "OUC-8.6", "OUC-8.7"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["captionsetup\\[figure\\].*?labelsep=none.*?font=\\{small\\}.*?position=below.*?skip=6pt", "belowcaptionskip\\}\\{6pt\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-9.4", "OUC-9.5", "OUC-9.6", "OUC-9.7", "OUC-9.8"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["captionsetup\\[table\\].*?labelsep=none.*?font=\\{small\\}.*?position=above.*?skip=6pt", "abovecaptionskip\\}\\{6pt\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-10.4", "OUC-10.6", "OUC-10.7", "OUC-10.8"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["bibfont\\{\\\\fontsize\\{10\\.5.*?\\{20", "bibsep\\}\\{0", "bibhang\\}\\{2\\\\ccwd\\}"]}
+    },
+    {
+      "rule_ids": ["OUC-10.9"],
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {
+        "paths": ["main.tex"],
+        "applicability_pattern": "\\\\bibliography\\{",
+        "patterns": ["bibliographystyle\\{oucauthoryear\\}"]
+      }
+    }
+  ],
+  "overrides": {
+    "OUC-3.10": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["data/abstract_en.tex"], "applicability_nonempty_environment": "enabstract", "patterns": ["Key Words: "]}
+    },
+    "OUC-5.1": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["vmargin\\s*=\\s*\\{25mm,\\s*25mm\\}"]}
+    },
+    "OUC-5.2": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["vmargin\\s*=\\s*\\{25mm,\\s*25mm\\}"]}
+    },
+    "OUC-5.3": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["hmargin\\s*=\\s*25mm"]}
+    },
+    "OUC-5.4": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["hmargin\\s*=\\s*25mm"]}
+    },
+    "OUC-5.9": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["headrulewidth\\}\\{0\\.4pt\\}"]}
+    },
+    "OUC-5.10": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["headheight\\s*=\\s*15mm"]}
+    },
+    "OUC-5.16": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["footskip\\s*=\\s*15mm"]}
+    },
+    "OUC-7.2": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["renewcommand\\{\\\\theequation\\}\\{\\\\arabic\\{chapter\\}-\\\\arabic\\{equation\\}\\}"]}
+    },
+    "OUC-7.3": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["newtagform\\{test\\}\\[\\]\\{（\\}\\{）\\}", "usetagform\\{test\\}"]}
+    },
+    "OUC-8.1": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["renewcommand\\{\\\\thefigure\\}\\{\\\\thechapter-\\\\arabic\\{figure\\}"]}
+    },
+    "OUC-8.2": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["textnormal\\{Fig\\.\\}"]}
+    },
+    "OUC-9.1": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["renewcommand\\{\\\\thetable\\}\\{\\\\thechapter-\\\\arabic\\{table\\}"]}
+    },
+    "OUC-9.2": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["textnormal\\{Tab\\.\\}"]}
+    },
+    "OUC-9.3": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["oucthesis.cls"], "patterns": ["captionsetup\\[table\\].*?position=above"]}
+    },
+    "OUC-9.11": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "table_alignment"
+    },
+    "OUC-9.13": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["contents/*.tex"], "applicability_pattern": "\\\\begin\\{(?:table|longtable)\\}", "patterns": ["\\\\toprule\\[1\\.5pt\\]", "\\\\bottomrule\\[1\\.5pt\\]"]}
+    },
+    "OUC-9.14": {
+      "phase": "source",
+      "disposition": "block",
+      "detector": "require_regex",
+      "config": {"paths": ["contents/*.tex"], "applicability_pattern": "\\\\begin\\{(?:table|longtable)\\}", "patterns": ["\\\\midrule\\[0\\.5pt\\]"]}
+    }
+  },
+  "extra_rules": [
+    {
+      "rule_id": "OUC-PDF-A4",
+      "category": "PDF页面",
+      "item": "输出PDF页面尺寸必须为A4",
+      "phase": "pdf",
+      "disposition": "block",
+      "detector": "pdf_page_size",
+      "source": "OUC模板页面画像",
+      "config": {"size_points": [595.276, 841.89], "tolerance_points": 2.0},
+      "layer": "template"
+    },
+    {
+      "rule_id": "OUC-TEMPLATE-PLACEHOLDER",
+      "category": "模板完整性",
+      "item": "OUC模板的受控中文占位文本必须被替换",
+      "phase": "source",
+      "disposition": "block",
+      "detector": "forbid_regex",
+      "source": "OUC模板适配器契约",
+      "config": {"pattern": "待生成论文标题|待生成论文封面", "paths": ["main.tex", "data/cover.tex"]},
+      "layer": "template"
+    },
+    {
+      "rule_id": "OUC-FIGURE-ENGLISH-CAPTION",
+      "category": "图题完整性",
+      "item": "模板要求的英文图题必须存在且不得复制中文",
+      "phase": "source",
+      "disposition": "degrade",
+      "detector": "bilingual_caption",
+      "source": "研究生论文书写规范.docx与OUC模板题注契约",
+      "config": {"kind": "figure", "paths": ["contents/*.tex"]},
+      "layer": "template"
+    },
+    {
+      "rule_id": "OUC-TABLE-ENGLISH-CAPTION",
+      "category": "表题完整性",
+      "item": "模板要求的英文表题必须存在且不得复制中文",
+      "phase": "source",
+      "disposition": "degrade",
+      "detector": "bilingual_caption",
+      "source": "研究生论文书写规范.docx与OUC模板题注契约",
+      "config": {"kind": "table", "paths": ["contents/*.tex"]},
+      "layer": "template"
+    },
+    {
+      "rule_id": "OUC-TOC-ENGLISH-HEADINGS",
+      "category": "英文目录完整性",
+      "item": "英文目录中的章、节、小节标题必须为有效英文",
+      "phase": "source",
+      "disposition": "degrade",
+      "detector": "english_headings",
+      "source": "研究生论文书写规范.docx与OUC模板目录契约",
+      "config": {
+        "commands": ["enchapter", "ensection", "ensubsection"],
+        "paths": ["contents/*.tex"]
+      },
+      "layer": "template"
+    }
+  ],
+  "rules": []
+}

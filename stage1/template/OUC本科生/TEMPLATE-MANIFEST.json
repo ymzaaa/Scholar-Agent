@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "template_id": "ouc-bachelor",
+  "display_name": "中国海洋大学本科毕业论文",
+  "school": "中国海洋大学",
+  "education_level": "undergraduate",
+  "source_path": "stage1/template/OUC本科生/source",
+  "adapter": "ouc-bachelor",
+  "content_directory": "includes",
+  "compile_recipe": {
+    "entrypoint": "main.tex", "engine": "xelatex", "engine_runs": 2,
+    "bibliography_backend": "none", "bibliography_policy": "disabled",
+    "artifact_stem": "main", "auxiliary_directories": ["includes"]
+  },
+  "capabilities": {
+    "figures": "supported", "tables": "supported", "formulas": "supported",
+    "word_numeric_references": "supported", "cross_page_tables": "degraded"
+  },
+  "bibtex_supported": false,
+  "format_profile_path": null
+}

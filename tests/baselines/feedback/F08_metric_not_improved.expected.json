@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F08",
+  "input_sha256": "a7f190b24cc1aac8d60c3ea8be710254dadf109cc1364bd7ccf21248ff88da07",
+  "expected": {"decision": "rollback", "compile_success": true, "local_metric_passed": false, "candidate_published": false, "changed_files_after_rollback": [], "new_constraints": 0}
+}

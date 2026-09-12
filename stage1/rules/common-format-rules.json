@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0.0",
+  "rules": [
+    {
+      "rule_id": "COMMON-TEX-ESCAPE",
+      "category": "LaTeX源码正确性",
+      "item": "数学命令不得被错误转换为textbackslash",
+      "layer": "common",
+      "phase": "source",
+      "disposition": "block",
+      "detector": "forbid_regex",
+      "source": "Word→LaTeX通用正确性约束",
+      "config": {"pattern": "\\$[^$]*\\\\textbackslash(?:\\{\\})?[^$]*\\$|\\\\begin\\{equation\\}.*?\\\\textbackslash(?:\\{\\})?.*?\\\\end\\{equation\\}", "paths": ["contents/*.tex"]}
+    },
+    {
+      "rule_id": "COMMON-CITE-MATH",
+      "category": "引用正确性",
+      "item": "数学模式不得包含误转换的引用命令",
+      "layer": "common",
+      "phase": "source",
+      "disposition": "block",
+      "detector": "cite_in_math",
+      "source": "Word→LaTeX通用正确性约束",
+      "config": {"paths": ["contents/*.tex"]}
+    },
+    {
+      "rule_id": "COMMON-UNICODE-MATH",
+      "category": "公式正确性",
+      "item": "Unicode数学符号转换不得制造相邻数学区块",
+      "layer": "common",
+      "phase": "source",
+      "disposition": "block",
+      "detector": "forbid_regex",
+      "source": "Word→LaTeX通用正确性约束",
+      "config": {"pattern": "\\$[^$]+\\$\\$\\\\[A-Za-z]+\\$|\\$\\\\[A-Za-z]+\\$\\$[^$]+\\$", "paths": ["contents/*.tex"]}
+    },
+    {
+      "rule_id": "COMMON-URL-BARE",
+      "category": "链接正确性",
+      "item": "正文URL必须位于url或href命令中",
+      "layer": "common",
+      "phase": "source",
+      "disposition": "block",
+      "detector": "forbid_regex",
+      "source": "Word→LaTeX通用正确性约束",
+      "config": {"pattern": "(?<!\\\\url\\{)(?<!\\\\href\\{)https?://[^\\s{}]+", "paths": ["contents/*.tex", "data/*.tex"]}
+    },
+    {
+      "rule_id": "COMMON-PLACEHOLDER",
+      "category": "生成完整性",
+      "item": "活动内容不得残留未知模板占位符",
+      "layer": "common",
+      "phase": "source",
+      "disposition": "block",
+      "detector": "forbid_regex",
+      "source": "生成产物门禁",
+      "config": {"pattern": "\\{\\{[^{}\\n]+\\}\\}|<<[^<>\\n]+>>|__PLACEHOLDER_[A-Z0-9_]+__", "paths": ["**/*.tex"]}
+    },
+    {
+      "rule_id": "COMMON-COVER-METADATA-PENDING",
+      "category": "封面元数据",
+      "item": "封面仍有需要用户填写的字段",
+      "layer": "common",
+      "phase": "source",
+      "disposition": "degrade",
+      "detector": "forbid_regex",
+      "source": "集中元数据确认契约",
+      "config": {"pattern": "【待填写】", "paths": ["data/metadata.tex"]}
+    },
+    {
+      "rule_id": "COMMON-BIB-INSTITUTION",
+      "category": "参考文献正确性",
+      "item": "BibTeX机构作者中的逗号必须受花括号保护",
+      "layer": "common",
+      "phase": "source",
+      "disposition": "block",
+      "detector": "bib_institution",
+      "source": "BibTeX确定性解析约束"
+    },
+    {
+      "rule_id": "COMMON-REF-UNRESOLVED",
+      "category": "引用正确性",
+      "item": "编译日志不得包含未解析引用或文献",
+      "layer": "common",
+      "phase": "compile",
+      "disposition": "block",
+      "detector": "log_pattern",
+      "source": "G1编译门禁复用证据",
+      "config": {"pattern": "Citation [`'].+?[`'] .*undefined|Reference [`'].+?[`'] .*undefined|There were undefined (?:references|citations)|Rerun to get cross-references right"}
+    },
+    {
+      "rule_id": "COMMON-LOG-MISSING-GLYPH",
+      "category": "字体与字符",
+      "item": "编译日志不得报告缺失字符",
+      "layer": "common",
+      "phase": "compile",
+      "disposition": "block",
+      "detector": "log_pattern",
+      "source": "PDF内容可读性门禁",
+      "config": {"pattern": "Missing character: There is no[^\\n]*"}
+    },
+    {
+      "rule_id": "COMMON-LOG-FONT-SUBSTITUTION",
+      "category": "字体与字符",
+      "item": "编译日志不得报告未修正字体替代",
+      "layer": "common",
+      "phase": "compile",
+      "disposition": "block",
+      "detector": "log_pattern",
+      "source": "PDF内容可读性门禁",
+      "config": {"pattern": "Font Warning:.*Font shape.*undefined|Font Warning:.*size substitutions with differences"}
+    },
+    {
+      "rule_id": "COMMON-LOG-OVERFULL",
+      "category": "版面溢出",
+      "item": "编译日志中的Overfull盒子需要人工复核",
+      "layer": "common",
+      "phase": "compile",
+      "disposition": "degrade",
+      "detector": "log_pattern",
+      "source": "LaTeX编译日志",
+      "config": {"pattern": "Overfull \\\\[hv]box[^\\n]*"}
+    },
+    {
+      "rule_id": "COMMON-LOG-UNDERFULL",
+      "category": "版面疏松",
+      "item": "编译日志中的Underfull盒子需要人工复核",
+      "layer": "common",
+      "phase": "compile",
+      "disposition": "degrade",
+      "detector": "log_pattern",
+      "source": "LaTeX编译日志",
+      "config": {"pattern": "Underfull \\\\[hv]box[^\\n]*"}
+    },
+    {
+      "rule_id": "COMMON-PDF-VISUAL-OVERFLOW",
+      "category": "PDF版式",
+      "item": "PDF实际文字和对象不得越出版心",
+      "layer": "common",
+      "phase": "pdf",
+      "disposition": "degrade",
+      "source": "PDF视觉版式门禁"
+    }
+  ]
+}

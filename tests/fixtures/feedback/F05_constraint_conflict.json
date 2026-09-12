@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F05",
+  "title": "新反馈与锁定字号冲突",
+  "initial_latex": "% SCHOLAR_UNIT_BEGIN body-1 body_paragraph\n{\\fontsize{12pt}{18pt}\\selectfont 正文保持不变}\n% SCHOLAR_UNIT_END body-1\n",
+  "active_constraints": [{"constraint_id": "font-lock", "constraint_type": "font_size", "parameters": {"value": "12pt"}, "scope_type": "content_unit", "scope_ref": "body-1", "verifier": {"mode": "deterministic", "checker": "tex_unit_contains", "relative_path": "contents/chapter.tex", "needle": "\\fontsize{12pt}"}}],
+  "feedbacks": [{"feedback_id": "f05-2", "text": "把该段字号改成十四磅并以后保持", "selected_unit_ids": ["body-1"]}],
+  "target": {"unit_id": "body-1", "target_file": "contents/chapter.tex", "role": "body_paragraph"},
+  "model_output": {"edits": [{"old_text": "\\fontsize{12pt}{18pt}", "new_text": "\\fontsize{14pt}{20pt}"}], "constraint_candidates": [{"constraint_type": "font_size", "parameters": {"value": "14pt"}, "description": "后续保持十四磅", "scope_type": "content_unit", "verifier": {"mode": "deterministic", "checker": "tex_unit_contains", "needle": "\\fontsize{14pt}"}}]}
+}

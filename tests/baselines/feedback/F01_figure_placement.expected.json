@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "F01",
+  "input_sha256": "37a487f7871a27aefa9979439f3456a0430283261b585e1823532dbec98ab29a",
+  "expected": {"decision": "publish_candidate", "tool": "guarded_latex_patch", "model_calls": 1, "changed_files": ["contents/chapter.tex"], "required_fragment": "\\begin{figure}[htbp]", "protected_fragments": ["\\includegraphics{figure-a.png}", "\\caption{示意图}", "\\label{fig:a}"], "constraint_candidates": 0}
+}

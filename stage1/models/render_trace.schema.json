@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scholar-agent.local/schema/render-trace-1.0.0.json",
+  "title": "Scholar Agent Render Trace",
+  "type": "object",
+  "required": ["trace_version", "source_schema_version", "records"],
+  "properties": {
+    "trace_version": {"const": "1.0.0"},
+    "source_schema_version": {"type": "string"},
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["record_id", "marker_unit_id", "source_unit_ids", "source_order", "role", "status", "target_file", "output_order", "transformations", "details", "output_hash"],
+        "properties": {
+          "record_id": {"type": "string", "pattern": "^r-[0-9]{6}$"},
+          "marker_unit_id": {"type": "string", "pattern": "^u-[0-9]{6}$"},
+          "source_unit_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "source_order": {"type": "integer", "minimum": 0},
+          "role": {"type": "string"},
+          "status": {"enum": ["rendered", "skipped_empty", "not_implemented", "failed"]},
+          "target_file": {"type": "string"},
+          "output_order": {"type": "integer", "minimum": 0},
+          "transformations": {"type": "array", "items": {"type": "string"}},
+          "details": {"type": "object"},
+          "output_hash": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

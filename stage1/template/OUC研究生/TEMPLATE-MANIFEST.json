@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "template_id": "ouc-graduate",
+  "display_name": "中国海洋大学研究生学位论文",
+  "school": "中国海洋大学",
+  "education_level": "graduate",
+  "source_path": "stage1/template/OUC研究生/source",
+  "adapter": "ouc-graduate",
+  "content_directory": "contents",
+  "compile_recipe": {
+    "entrypoint": "main.tex", "engine": "xelatex", "engine_runs": 3,
+    "bibliography_backend": "bibtex", "bibliography_policy": "auto_if_cited",
+    "artifact_stem": "main", "auxiliary_directories": ["contents", "data"]
+  },
+  "capabilities": {
+    "figures": "supported", "tables": "supported", "formulas": "supported",
+    "word_numeric_references": "supported", "cross_page_tables": "supported",
+    "required_english_translation": "supported"
+  },
+  "bibtex_supported": true,
+  "format_profile_path": "stage1/rules/templates/ouc-format-profile.json"
+}
